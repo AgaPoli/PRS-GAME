@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My first game in JavaScript</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.jquery.com/jquery-2.2.4.min.js"
+      integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!--Game title-->
+    <div class="container">
+      <h2 class="text-center">
+        Welcome to the Game!
+        <span class="label label-default">Papier</span>
+        <span class="label label-warning">Rock</span>
+        <span class="label label-danger">Scissors</span>
+      </h2>
+    </div>
+    <!--Button new game-->
+    <div class="container"  id="js-newGameElement">
+      <div class="row text-center">
+        <button class="btn btn-primary btn-md" id="js-newGameButton" data-toggle="modal" data-target="#myModal">
+          NEW GAME
+        </button>
+      </div>
+    </div>
+
+    <!--Player choice-->
+    <div class="container" id="js-playerPickElement">
+      <div class="row text-center">
+        <button class="btn btn-primary"  >
+          <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Papier
+        </button>
+        <button class="btn btn-primary"   >
+          <i class="fa fa-hand-rock-o" aria-hidden="true"></i> Rock
+        </button>
+        <button class="btn btn-primary"  >
+          <i class="fa fa-hand-scissors-o" aria-hidden="true"></i> Scissors
+        </button>
+      </div>
+      <!--Table-->
+      <div class="container" id="js-resultsTableElement">
+        <div class="row text-center">
+          <div class="col-xs-5">
+            <span class="badge" id="js-playerPoints">0</span>
+            <span id="js-playerName"> Player </span>
+          </div>
+          <div class="col-xs-2">VS</div>
+          <div class="col-xs-5">
+            <span class="badge" id="js-computerPoints">0</span
+            ><span id="js-computerName"> Computer </span>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-xs-5">
+            <span id="js-playerPick"> Player Pick </span>
+          </div>
+          <div class="col-xs-2"></div>
+          <div class="col-xs-5">
+            <span id="js-computerPick"> Computer Pick </span>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-xs-5">
+            <span id="js-playerPoint"> Player Point </span>
+          </div>
+          <div class="col-xs-2"></div>
+          <div class="col-xs-5">
+            <span id="js-computerPoint"> Computer Point </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Modal-->
+  </body>
+</html>
+
+
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+          <h3 class="modal-title" id="myModalLabel">Welcome to the Game!!!</h3>
+        </div>
+
+        
+        <div class="form-group">
+            <label for="name">Enter your name</label>
+            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter name">
+            <small id="emailHelp" class="form-text text-muted">Please enter your name name can't be null name nact be number min 3 dig</small>
+          </div>
+          <div class="form-group">
+              <label for="exampleInputEmail1">Enter games </label>
+              <input type="number" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter games">
+              <small id="emailHelp" class="form-text text-muted">Please enter max 10 games</small>
+            </div>
+
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Start game</button>
+        </div>
+      </div>
+    </div>
+  </div>
