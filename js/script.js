@@ -10,19 +10,48 @@ const playerPick = document.getElementById("js-playerPick");
 const computerPick = document.getElementById("js-computerPick");
 const playerPoint = document.getElementById("js-playerPoint");
 const computerPoint = document.getElementById("js-computerPoint");
+const userName = document.getElementById("js-userName");
 
 // new game (welcome prompt with question how many games and the name)
 
 
+//Enter your name (assumptions for the name) 
+function getUserName() {
+  return usernameElement.value;
+  // return prompt(
+  //   `Please enter your name
+  // name can't be null
+  // name nact be number
+  // min 3 dig`,
+  //   `Agaa`
+  // );
+}
 
+// waldacja imienia(ile liter, cyfry, anuluj)
+function validateUserName(name) {
+  const nameLength = name.length;
+  const isNameNull = name == null;
+  const isMax11Characters = nameLength <= 11;
+  const isMinimum3Characters = nameLength >= 3;
+  const isOnlyNumbers = /^\d+$/.test(name);
+  const isAEnded = /a$/.test(name);
 
+  return (
+    !isNameNull &&
+    isMax11Characters &&
+    isMinimum3Characters &&
+    !isOnlyNumbers &&
+    isAEnded
+  );
+}
 
+function newGame() {
+  const name = getUserName();
+  if (!validateUserName(name)) {
+    alert("imie nie poprawne");
 
+    return;
+  }
 
-<div class="container"  id="js-newGameElement">
-      <div class="row text-center">
-        <button class="btn btn-primary btn-md" id="js-newGameButton" data-toggle="modal" data-target="#myModal">
-          NEW GAME
-        </button>
-      </div>
-    </div>
+  $("#myModal").modal("hide");
+  zasadyGry.liczbaGier = number
