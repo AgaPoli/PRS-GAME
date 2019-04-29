@@ -52,7 +52,17 @@ function newGame() {
     return;
   }
 
-  $("#myModal").modal("hide");
+ $("#myModal").modal("hide");
 }
 
 startGameBtn.addEventListener("click", event => newGame());
+
+// player choice eventlistner, function 
+
+playerPickElement.addEventListener("click", event => playerChoice());
+
+function playerChoice (target){
+  const targetBtn = target.closest("btn.");
+  const playerChoice = targetBtn.dataset.choice; 
+
+}
