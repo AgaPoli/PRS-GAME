@@ -3,21 +3,20 @@ const newGameButton = document.getElementById("js-newGameButton");
 const playerPickElement = document.getElementById("js-playerPickElement");
 const resultsTableElement = document.getElementById("js-resultsTableElement");
 const playerPoints = document.getElementById("js-playerPoints");
-const playerName = document.getElementById("js-playerName")
+const playerName = document.getElementById("js-playerName");
 const computerPoints = document.getElementById("js-computerPoints");
-const computerName= document.getElementById("js-computerName");
+const computerName = document.getElementById("js-computerName");
 const playerPick = document.getElementById("js-playerPick");
 const computerPick = document.getElementById("js-computerPick");
 const playerPoint = document.getElementById("js-playerPoint");
 const computerPoint = document.getElementById("js-computerPoint");
-const userName = document.getElementById("js-userName");
-
+const userNameElement = document.getElementById("js-userNameElement");
+const startGameBtn = document.getElementById("js-startGameBtn");
 // new game (welcome prompt with question how many games and the name)
 
-
-//Enter your name (assumptions for the name) 
+//Enter your name (assumptions for the name)
 function getUserName() {
-  return usernameElement.value;
+  return userNameElement.value;
   // return prompt(
   //   `Please enter your name
   // name can't be null
@@ -27,7 +26,7 @@ function getUserName() {
   // );
 }
 
-// waldacja imienia(ile liter, cyfry, anuluj)
+// name validation(length, numbers, cansel, aeneded)
 function validateUserName(name) {
   const nameLength = name.length;
   const isNameNull = name == null;
@@ -54,4 +53,6 @@ function newGame() {
   }
 
   $("#myModal").modal("hide");
-  zasadyGry.liczbaGier = number
+}
+
+startGameBtn.addEventListener("click", event => newGame());
