@@ -65,6 +65,11 @@ function newGame() {
 
     return;
   }
+  if (numberOfGamesElement.value >= 12) {
+    alert("To many game you will be nudno!!");
+
+    return;
+  }
 
   $("#myModal").modal("hide");
   gameRules.numberOfGames = numberOfGamesElement.value;
@@ -139,9 +144,9 @@ function judge(playerPick, computerPick) {
   console.log('liczba rozegranych gier ', scoreBoard.numberOfGames);
   console.log('limit gier ', gameRules.numberOfGames);
 
-  courseOfTheGame.forEach(element => {
-    showResult(element)
-  });
+  // courseOfTheGame.forEach(element => {
+  //   showResult(element)
+  // });
 
   if (scoreBoard.numberOfGames >= gameRules.numberOfGames) {
     $("#resultModal").modal("show");
@@ -173,7 +178,7 @@ function endGame() {
   courseOfTheGame = [];
   resultsTableBodyElement.innerHTML = "";
 
-  let scoreBoard = {
+  scoreBoard = {
     numberOfGames: 0,
     scorePlayer: 0,
     scoreComputer: 0
@@ -183,11 +188,13 @@ function endGame() {
 
 
 function showResult(courseOfTheRound) {
+  console.log(courseOfTheRound);
+
   const row = `
     <tr>
       <th scope="row">${scoreBoard.numberOfGames}</th>
-      <td>${courseOfTheRound.playerPoint}</td>
-      <td>${courseOfTheRound. computerPoint}</td>
+      <td>${courseOfTheRound.scorePlayer}</td>
+      <td>${courseOfTheRound.scoreComputer}</td>
       <td>${courseOfTheRound.playerMove}</td>
       <td>${courseOfTheRound.computerMove}</td>
       <td>${courseOfTheRound.won}</td>
