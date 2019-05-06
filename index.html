@@ -1,157 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!--Dołączenie zewnętrznych arkuszy stylów-->
-    <meta charset="UTF-8">
-    <title>My first game in JavaScript</title>
-    <link href="css/style.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <script
+
+<head>
+  <!--Dołączenie zewnętrznych arkuszy stylów-->
+  <meta charset="UTF-8">
+  <title>My first game in JavaScript</title>
+  <link
+    href="css/style.css"
+    rel="stylesheet"
+  >
+  <link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    rel="stylesheet"
+  >
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
+    rel="stylesheet"
+  >
+  <script
     src="https://code.jquery.com/jquery-2.2.4.min.js"
     integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-    crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-  </head>
-  <body>
-    <!--Game title-->
-    <div class="container">
-      <h2 class="text-center">
-        Welcome to the Game!
-        <span class="label label-default">Papier</span>
-        <span class="label label-warning">Rock</span>
-        <span class="label label-danger">Scissors</span>
-      </h2>
+    crossorigin="anonymous"
+  ></script>
+  <script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+    integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+    crossorigin="anonymous"
+  ></script>
+</head>
+
+<body>
+  <!--Game title-->
+  <div class="container">
+    <h2 class="text-center">
+      Welcome to the Game!
+      <span class="label label-default">Papier</span>
+      <span class="label label-warning">Rock</span>
+      <span class="label label-danger">Scissors</span>
+    </h2>
+  </div>
+  <!--Button new game-->
+  <div
+    class="container"
+    id="js-newGameElement"
+  >
+    <div class="row text-center">
+      <button
+        class="btn btn-primary btn-md"
+        id="js-newGameButton"
+        data-toggle="modal"
+        data-target="#myModal"
+      >
+        NEW GAME
+      </button>
     </div>
-    <!--Button new game-->
-    <div class="container"  id="js-newGameElement">
-      <div class="row text-center">
-        <button class="btn btn-primary btn-md" id="js-newGameButton" data-toggle="modal" data-target="#myModal">
-          NEW GAME
-        </button>
+  </div>
+
+  <!--Player choice-->
+  <div
+    class="container hidden"
+    id="js-playerPickElement"
+  >
+    <div class="row text-center">
+      <button
+        class="btn btn-primary"
+        data-selection="Papier"
+      >
+        <i
+          class="fa fa-hand-paper-o"
+          aria-hidden="true"
+        ></i> Papier
+      </button>
+      <button
+        class="btn btn-primary"
+        data-selection="Rock"
+      >
+        <i
+          class="fa fa-hand-rock-o"
+          aria-hidden="true"
+        ></i> Rock
+      </button>
+      <button
+        class="btn btn-primary"
+        data-selection="Scissors"
+      >
+        <i
+          class="fa fa-hand-scissors-o"
+          aria-hidden="true"
+        ></i> Scissors
+      </button>
+    </div>
+  </div>
+  <!--Table-->
+  <div
+    class="container hidden"
+    id="js-resultsTableElement"
+  >
+    <div class="row text-center">
+      <div class="col-xs-5">
+        <span
+          class="badge"
+          id="js-playerPoints"
+        >0</span>
+        <span id="js-playerName"> Player </span>
+      </div>
+      <div class="col-xs-2">VS</div>
+      <div class="col-xs-5">
+        <span
+          class="badge"
+          id="js-computerPoints"
+        >0</span><span id="js-computerName"> Computer </span>
       </div>
     </div>
-
-    <!--Player choice-->
-    <div class="container" id="js-playerPickElement">
-      <div class="row text-center">
-        <button class="btn btn-primary" data-selection="Papier" >
-          <i class="fa fa-hand-paper-o" aria-hidden="true"></i> Papier
-        </button>
-        <button class="btn btn-primary" data-selection="Rock"  >
-          <i class="fa fa-hand-rock-o" aria-hidden="true"></i> Rock
-        </button>
-        <button class="btn btn-primary" data-selection="Scissors" >
-          <i class="fa fa-hand-scissors-o" aria-hidden="true"></i> Scissors
-        </button>
+    <div class="row text-center">
+      <div class="col-xs-5">
+        <span id="js-playerPick"> Player Pick </span>
       </div>
-      <!--Table-->
-      <div class="container" id="js-resultsTableElement">
-        <div class="row text-center">
-          <div class="col-xs-5">
-            <span class="badge" id="js-playerPoints">0</span>
-            <span id="js-playerName"> Player </span>
-          </div>
-          <div class="col-xs-2">VS</div>
-          <div class="col-xs-5">
-            <span class="badge" id="js-computerPoints">0</span
-            ><span id="js-computerName"> Computer </span>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-xs-5">
-            <span id="js-playerPick"> Player Pick </span>
-          </div>
-          <div class="col-xs-2"></div>
-          <div class="col-xs-5">
-            <span id="js-computerPick"> Computer Pick </span>
-          </div>
-        </div>
-        <div class="row text-center">
-          <div class="col-xs-5">
-            <span id="js-playerPoint"> Player Point </span>
-          </div>
-          <div class="col-xs-2"></div>
-          <div class="col-xs-5">
-            <span id="js-computerPoint"> Computer Point </span>
-          </div>
-        </div>
+      <div class="col-xs-2"></div>
+      <div class="col-xs-5">
+        <span id="js-computerPick"> Computer Pick </span>
       </div>
-       <!-- Modal -->
-       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      
-            <h4 class="modal-title" id="myModalLabel">Welcome to the Game!!!</h4>
-          
-          </div>
-          <div class="modal-body">
-            
-            <div class="form-group">
-              <label for="name">Enter your name</label>
-              <input required type="text" class="form-control" id="js-userNameElement" placeholder="Name" value="Agaa">
-            </div>
-            
-            <div class="form-group">
-              <label for="numberOfGames">Number of rounds</label>
-              <input required type="number" step="1" class="form-control" id="js-numberOfGames" placeholder="Number of rounds" value="3">
-            </div>
-          
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            <button type="button" id="js-startGameBtn" class="btn btn-primary">Start Game</button>
-          </div>
-          </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-xs-5">
+        <span id="js-playerPoint"> Player Point </span>
+      </div>
+      <div class="col-xs-2"></div>
+      <div class="col-xs-5">
+        <span id="js-computerPoint"> Computer Point </span>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="myModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          ><span aria-hidden="true">&times;</span></button>
+
+          <h4
+            class="modal-title"
+            id="myModalLabel"
+          >Welcome to the Game!!!</h4>
+
         </div>
+        <div class="modal-body">
+
+          <div class="form-group">
+            <label for="name">Enter your name</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              id="js-userNameElement"
+              placeholder="Name"
+              value="Agaa"
+            >
+          </div>
+
+          <div class="form-group">
+            <label for="numberOfGames">Number of rounds</label>
+            <input
+              required
+              type="number"
+              step="1"
+              class="form-control"
+              id="js-numberOfGames"
+              placeholder="Number of rounds"
+              value="3"
+            >
+          </div>
+
         </div>
-
-
- <!-- Modal Table -->
-        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        
-              <h4 class="modal-title" id="myModalLabel">Score</h4>
-            
-            </div>
-
-            <div class="modal-body">
-        <table class="table table-score">
-          <thead>
-            <tr>
-              <th >Round</th>
-              <th >Player Score</th>
-              <th >Computer Score</th>
-              <th >Player Move</th>
-              <th >Computer Move</th>
-              <th >Winner</th>
-            </tr>
-          </thead>
-          <tbody id= "js-resultsTableBody">
-          
-          </tbody>
-        </table>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          
+          <button
+            type="button"
+            class="btn btn-default"
+            data-dismiss="modal"
+          >Close</button>
+          <button
+            type="button"
+            id="js-startGameBtn"
+            class="btn btn-primary"
+          >Start Game</button>
         </div>
       </div>
     </div>
   </div>
-  <script src="js/script.js" type="text/javascript">
-	</script>
+
+
+  <!-- Modal Table -->
+  <div
+    class="modal fade"
+    id="resultModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="myModalLabel"
+  >
+    <div
+      class="modal-dialog"
+      role="document"
+    >
+      <div class="modal-content">
+        <div class="modal-header">
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          ><span aria-hidden="true">&times;</span></button>
+
+          <h4
+            class="modal-title"
+            id="myModalLabel"
+          >Score</h4>
+
+        </div>
+
+        <div class="modal-body">
+          <table class="table table-score">
+            <thead>
+              <tr>
+                <th>Round</th>
+                <th>Player Score</th>
+                <th>Computer Score</th>
+                <th>Player Move</th>
+                <th>Computer Move</th>
+                <th>Winner</th>
+              </tr>
+            </thead>
+            <tbody id="js-resultsTableBody">
+
+            </tbody>
+          </table>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-default"
+              data-dismiss="modal"
+            >Close</button>
+
+          </div>
+        </div>
+      </div>
     </div>
-    <!--Modal-->
-  </body>
+    <script
+      src="js/script.js"
+      type="text/javascript"
+    >
+    </script>
+  </div>
+  <!--Modal-->
+</body>
+
 </html>
 
 
 <!-- Button trigger modal -->
-
-  
- 

@@ -1,4 +1,3 @@
-
 const newGameButton = document.getElementById("js-newGameButton");
 const playerPickElement = document.getElementById("js-playerPickElement");
 const resultsTableElement = document.getElementById("js-resultsTableElement");
@@ -24,7 +23,7 @@ let scoreBoard = {
   scoreComputer: 0
 };
 
-const  gameRules = {
+const gameRules = {
   numberOfGames: 3
 };
 
@@ -67,8 +66,8 @@ function newGame() {
     return;
   }
 
- $("#myModal").modal("hide");
- gameRules.numberOfGames = numberOfGamesElement.value;
+  $("#myModal").modal("hide");
+  gameRules.numberOfGames = numberOfGamesElement.value;
   newGameButton.classList.add("hidden");
   playerNameElement.innerHTML = name;
   playerPickElement.classList.remove("hidden");
@@ -78,45 +77,46 @@ function newGame() {
 startGameBtn.addEventListener("click", event => newGame());
 
 // player choice eventlistner, function 
+playerPickElement.addEventListener("click", event => {
+  event.stopPropagation();
 
-
-
-playerPickElement.addEventListener("click", event =>
   playerChoose(event.target)
-);
+});
 
 
 function playerChoose(target) {
   //element to nasz target
   const targetBtn = target.closest(".btn"); //jak naciskam na ikonke w przycisku to szuka najblizszego rodzica .btn;
-  const playerChoice = targetBtn.dataset.selection; //ma byc na cala ikone nie tylko na nazwe(papier)ma byc kolko i znaczek
-  // console.log(targetBtn, typeof playerChoice, typeof computerPick()); //playerChoice- wyswietli co wybral gracz
-  judge (playerChoice, computerPick());
+  if (targetBtn != null) {
+    const playerChoice = targetBtn.dataset.selection; //ma byc na cala ikone nie tylko na nazwe(papier)ma byc kolko i znaczek
+    // console.log(targetBtn, typeof playerChoice, typeof computerPick()); //playerChoice- wyswietli co wybral gracz
+    judge(playerChoice, computerPick());
+  }
 }
 
 
-function computerPick (){
-  const options =["Papier", "Rock", "Scissors"];
-  return options[ Math.floor(Math.random() * 3)];
+function computerPick() {
+  const options = ["Papier", "Rock", "Scissors"];
+  return options[Math.floor(Math.random() * 3)];
 
 }
 
 
-function judge (playerPick, computerPick) {
+function judge(playerPick, computerPick) {
   if (computerPick == playerPick) {
     return 0; //remis
   }
   let winner = "";
   if (
-    (computerPick == "Papier"   &&  playerPick == "Scissors" )||
-    (computerPick == "Rock"     &&  playerPick == "Papier" )||
-    (computerPick == "Scissors" &&  playerPick == "Rock" )
+    (computerPick == "Papier" && playerPick == "Scissors") ||
+    (computerPick == "Rock" && playerPick == "Papier") ||
+    (computerPick == "Scissors" && playerPick == "Rock")
   ) {
     scoreBoard.scorePlayer++;
-    let winner = "player";
+    winner = "player";
   } else {
     scoreBoard.scoreComputer++;
-    let winner = "computer";
+    winner = "computer";
   }
   result(winner);
 
@@ -124,38 +124,44 @@ function judge (playerPick, computerPick) {
   computerChoice.innerHTML = computerPick;
   scoreBoard.numberOfGames++;
 
-const courseOfTheRound = {
-  scorePlayer: scoreBoard.scorePlayer,
-  scoreComputer: scoreBoard.scoreComputer,
-  playerMove: playerPick.toString(),
-  computerMove: computerPick.toString(),
-  won: winner
-};
-courseOfTheGame.push(courseOfTheRound); // adding an element to the end of the array
- 
- showResult(courseOfTheRound);
- console.log(scoreBoard.namberOfGames);
+  const courseOfTheRound = {
+    scorePlayer: scoreBoard.scorePlayer,
+    scoreComputer: scoreBoard.scoreComputer,
+    playerMove: playerPick.toString(),
+    computerMove: computerPick.toString(),
+    won: winner
+  };
 
+  courseOfTheGame.push(courseOfTheRound); // adding an element to the end of the array
 
-courseOfTheGame.forEach(elemet =>{
-  computerChoice.log(element)
-});
+  showResult(courseOfTheRound);
+
+  console.log('liczba rozegranych gier ', scoreBoard.numberOfGames);
+  console.log('limit gier ', gameRules.numberOfGames);
+
+  courseOfTheGame.forEach(element => {
+    showResult(element)
+  });
+
+  if (scoreBoard.numberOfGames >= gameRules.numberOfGames) {
+    $("#resultModal").modal("show");
+  }
 }
- 
-// The number of js-playerPoints is to be used for the name
- function result(winner, reset = false){
-   playerPoints.innerHTML = reset ? "0": scoreBoard.scorePlayer.toString();
-   computerPoints.innerHTML = reset ? "0": scoreBoard.scoreComputer.toString();
 
-   playerPoint.innerHTML =
+// The number of js-playerPoints is to be used for the name
+function result(winner, reset = false) {
+  playerPoints.innerHTML = reset ? "0" : scoreBoard.scorePlayer.toString();
+  computerPoints.innerHTML = reset ? "0" : scoreBoard.scoreComputer.toString();
+
+  playerPoint.innerHTML =
     winner == "player" ? '<i class="fa fa-smile-o" aria-hidden="true"></i>' : "";
 
   computerPoint.innerHTML =
     winner == "computer" ? '<i class="fa fa-smile-o" aria-hidden="true"></i>' : "";
- 
+
 }
 
-function endGame(){
+function endGame() {
   newGameButton.classList.remove("hidden");
   playerNameElement.innerHTML = "PlayerName";
   playerPickElement.classList.add("hidden");
@@ -168,10 +174,10 @@ function endGame(){
   resultsTableBodyElement.innerHTML = "";
 
   let scoreBoard = {
-  numberOfGames: 0,
-  scorePlayer: 0,
-  scoreComputer: 0
-};
+    numberOfGames: 0,
+    scorePlayer: 0,
+    scoreComputer: 0
+  };
 }
 
 
